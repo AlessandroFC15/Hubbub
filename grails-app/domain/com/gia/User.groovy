@@ -7,7 +7,7 @@ class User {
 
     static hasOne = [profile: Profile]
 
-    static hasMany = [posts: Post]
+    static hasMany = [posts: Post, tags: Tag, followingUsers: User]
 
     static constraints = {
         loginId size: 3..20, unique: true, nullable: false
@@ -19,5 +19,9 @@ class User {
 
     static mapping = {
         posts sort:'dateCreated'
+    }
+
+    String toString() {
+        profile ? profile.fullName : loginId
     }
 }
